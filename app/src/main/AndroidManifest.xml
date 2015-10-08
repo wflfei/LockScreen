@@ -38,7 +38,8 @@
         <activity
             android:name=".ScreenActivity"
             android:label="@string/title_activity_screen"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:theme="@style/AppTheme.NoActionBar"
+            android:excludeFromRecents="true">
         </activity>
     </application>
 

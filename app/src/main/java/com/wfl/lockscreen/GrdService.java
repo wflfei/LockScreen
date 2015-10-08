@@ -36,16 +36,15 @@ public class GrdService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-
+        keyguardManager = (KeyguardManager) getSystemService(Context.KEYGUARD_SERVICE);
+        keyguardLock = keyguardManager.newKeyguardLock("");
+        keyguardLock.disableKeyguard();
 
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         if (!registered) {
-            keyguardManager = (KeyguardManager) getSystemService(Context.KEYGUARD_SERVICE);
-            keyguardLock = keyguardManager.newKeyguardLock("");
-            keyguardLock.disableKeyguard();
             IntentFilter intentFilter = new IntentFilter(Intent.ACTION_SCREEN_OFF);
             //intentFilter.addAction(Intent.ACTION_SCREEN_ON);
             registerReceiver(broadcastReceiver, intentFilter);
@@ -58,6 +57,7 @@ public class GrdService extends Service {
 
     @Override
     public void onDestroy() {
+        keyguardLock.reenableKeyguard();
         unregisterReceiver(broadcastReceiver);
         registered = false;
         super.onDestroy();
