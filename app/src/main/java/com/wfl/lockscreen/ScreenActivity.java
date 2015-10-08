@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 
 public class ScreenActivity extends AppCompatActivity {
@@ -17,7 +18,7 @@ public class ScreenActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         setContentView(R.layout.activity_screen);
 
