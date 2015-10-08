@@ -47,6 +47,7 @@ public class GrdService extends Service {
             keyguardLock = keyguardManager.newKeyguardLock("");
             keyguardLock.disableKeyguard();
             IntentFilter intentFilter = new IntentFilter(Intent.ACTION_SCREEN_OFF);
+            intentFilter.setPriority(60000);
             //intentFilter.addAction(Intent.ACTION_SCREEN_ON);
             registerReceiver(broadcastReceiver, intentFilter);
             Log.v("GrdService", "Register Receiver");
