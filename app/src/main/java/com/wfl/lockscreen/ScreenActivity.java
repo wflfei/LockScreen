@@ -14,6 +14,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 public class ScreenActivity extends AppCompatActivity {
+    private ScreenView mScreenView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,15 +23,26 @@ public class ScreenActivity extends AppCompatActivity {
         getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         setContentView(R.layout.activity_screen);
 
-        getWindow().getDecorView().setOnTouchListener(new View.OnTouchListener() {
+
+
+        /*getWindow().getDecorView().setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 finish();
-                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                 return true;
             }
-        });
+        });*/
 
+        mScreenView = (ScreenView) findViewById(R.id.screen_view);
+        mScreenView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_IMMERSIVE | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
+        mScreenView.setOnUnlockListener(new ScreenView.OnUnlockListener() {
+            @Override
+            public void onUnlockSuccess() {
+                finish();
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+            }
+        });
     }
 
     @Override
