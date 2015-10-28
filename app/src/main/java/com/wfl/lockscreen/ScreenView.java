@@ -109,6 +109,7 @@ public class ScreenView extends View {
                 mPoints.add(point);
             }
         }
+        int another_change2;
     }
 
     private void initPaint() {
