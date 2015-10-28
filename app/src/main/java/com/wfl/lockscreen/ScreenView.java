@@ -97,6 +97,7 @@ public class ScreenView extends View {
         mUnlockList.add(5);
         mUnlockList.add(7);
         initPaint();
+        int somechange1;
     }
 
     private void initPoints() {
